@@ -9,19 +9,10 @@
  */
 
 var config = {
-	address: "0.0.0.0", 	// Address to listen on, can be:
-							// - "localhost", "127.0.0.1", "::1" to listen on loopback interface
-							// - another specific IPv4/6 to listen on a specific interface
-							// - "0.0.0.0", "::" to listen on any interface
-							// Default, when address config is left out or empty, is "localhost"
-	port: 8080,
-	basePath: "/", 	// The URL path where MagicMirror is hosted. If you are using a Reverse proxy
-					// you must set the sub path here. basePath must end with a /
-	ipWhitelist: ["127.0.0.1", "::ffff:127.0.0.1", "::1", "192.168.0.69", "192.168.0.78", "192.168.0.53"], 	// Set [] to allow all IP addresses
-															// or add a specific IPv4 of 192.168.1.5 :
-															// ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.1.5"],
-															// or IPv4 range of 192.168.3.0 --> 192.168.3.15 use CIDR format :
-															// ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.3.0/28"],
+	address: "0.0.0.0", 	// Address - "0.0.0.0", to listen on any interface
+	port: 8080, // To access the Remote-Control module webpafe
+	basePath: "/", 	// The URL path where MagicMirror is hosted. If you are using a Reverse proxy you must set the sub path here. basePath must end with a /
+	ipWhitelist: [], 	// Set [] to allow all IP addresses
 
 	useHttps: false, 		// Support HTTPS or not, default "false" will use HTTP
 	httpsPrivateKey: "", 	// HTTPS private key path, only require when useHttps is true
@@ -32,15 +23,10 @@ var config = {
 	logLevel: ["INFO", "LOG", "WARN", "ERROR"], // Add "DEBUG" for even more logging
 	timeFormat: 24,
 	units: "metric",
-	// serverOnly:  true/false/"local" ,
-	// local for armv6l processors, default
-	//   starts serveronly and then starts chrome browser
-	// false, default for all NON-armv6l devices
-	// true, force serveronly mode, because you want to.. no UI on this device
 
 	modules: [
 		{
-			module: "alert",
+			module: "alert", // Default Module 
 		},
 		{
 			module: "updatenotification",
@@ -51,7 +37,7 @@ var config = {
 			position: "top_left"
 		},
 		{
-			module: "MMM-covid19uk-stats",
+			module: "MMM-covid19uk-stats", // Repository and config code from: https://github.com/blighter/MMM-covid19uk-stats
 			position: "bottom_right",
 				 config: {
 					apiURL: "https://api.coronavirus.data.gov.uk/v1/data"
@@ -68,7 +54,7 @@ var config = {
 				weatherProvider: "openweathermap",
 				type: "current",
 				location: "Bristol",
-				locationID: "2654675", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+				locationID: "2654675", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz
 				apiKey: "90ebb92d30b573ac489517258f34cade"
 			}
 		},
@@ -80,12 +66,12 @@ var config = {
 				weatherProvider: "openweathermap",
 				type: "forecast",
 				location: "Bristol",
-				locationID: "2654675", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+				locationID: "2654675", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz
 				apiKey: "90ebb92d30b573ac489517258f34cade"
 			}
 		},
 		{
- 			 module: "MMM-NowPlayingOnSpotify",
+ 			 module: "MMM-NowPlayingOnSpotify", // Repository and config code from: https://github.com/raywo/MMM-NowPlayingOnSpotify
  			 position: "bottom_left",
 
  			 config: {
@@ -97,7 +83,7 @@ var config = {
  			 }
 		},
 		{
-    			module: 'MMM-soccer',
+    			module: 'MMM-soccer', // Repository and config code from: https://github.com/fewieden/MMM-soccer
     			position: 'top_right',
     				config: {
 					api_key: '6dccb94799214869bc88f00fa9d259f3',
@@ -132,13 +118,13 @@ var config = {
 				calendars: [
 				{
     						symbol: 'flag-checkered',
-    						url: 'http://localhost:8080/MMM-Formula1/schedule.ics',
+    						url: 'http://localhost:8080/MMM-Formula1/schedule.ics', // Config code from: https://github.com/ianperrin/MMM-Formula1
 				}
 				]
 			}
 		},
 		{
-    			module: "MMM-Formula1",
+    			module: "MMM-Formula1", // Repository and config code from: https://github.com/ianperrin/MMM-Formula1
     			position: "top_right",
     			header: "F1 Driver Standings",
     				config: {
@@ -149,7 +135,7 @@ var config = {
     				}
   		},
 		{
-            		 module: 'MMM-CoinMarketCap',
+            		 module: 'MMM-CoinMarketCap', // Repository and config code from: https://github.com/glitch452/MMM-CoinMarketCap
            		 position: "top_right",
             		 header: "Cryptocurrencies",
             			
@@ -168,7 +154,7 @@ var config = {
             			}
         	},
 		{
-    			module: "MMM-AVStock",
+    			module: "MMM-AVStock", // Repository and config code from: https://github.com/lavolp3/MMM-AVStock
    		 	position: "bottom_bar",
     			
     				config: {
@@ -183,7 +169,7 @@ var config = {
    				 }
 		},
 		{
-			module: "MMM-MoonPhase",
+			module: "MMM-MoonPhase", // Repository and config code from: https://github.com/NolanKingdon/MMM-MoonPhase
 			position: "bottom_left",
 				config: {
 					updateInterval: 43200000,
@@ -198,7 +184,7 @@ var config = {
 				}
 		},
 		{
-                        module: 'MMM-nasaastropic',
+                        module: 'MMM-nasaastropic', // Repository and config code from: https://github.com/nebulx29/MMM-nasaastropicy
                         position: 'bottom_right',
                         config: {
                                 updateInterval: 6*60*60*1000,
@@ -208,32 +194,29 @@ var config = {
                         }
                 },
 		{
-       			 module: 'MMM-Remote-Control',
-       			 // uncomment the following line to show the URL of the remote control on the mirror
-       			 // position: 'bottom_left',
-       			 // you can hide this module afterwards from the remote control itself
+       			 module: 'MMM-Remote-Control', // Repository and config code from: https://github.com/Jopyth/MMM-Remote-Control
+       			 // position: 'bottom_left', (uncomment the following line to show the URL of the remote control on the mirror)
        			 config: {
            			 apiKey: '5e487a79e3524b6da7e2261d1ab48164'
       		 	 }
    		},
 		{
   			disabled: false,
-			module: "Hello-Lucy",
+			module: "Hello-Lucy", // Repository and config code from: https://github.com/mykle1/Hello-Lucy
 			position: "top_center",
 			config: {
 				    keyword: 'WAKE UP',              // keyword to activate listening for a command/sentence
 				    timeout: 5,                        // timeout listening for a command/sentence
 				    standByMethod: 'DPMS',              // 'DPMS' = anything else than RPi or 'PI'
 				    microphone: "1,0",                  // run "arecord -l" card # and device # mine is "0,0"
-				    sounds: ["1.mp3", "11.mp3"],        // welcome sound at startup. Add several for a random greetings
 				    confirmationSound: "ding.mp3",      // name and extension of sound file
 				    startHideAll: true,                 // All modules start as hidden EXCEPT PAGE ONE
 				    
 				    pageOneModules: ["Hello-Lucy", "clock", "alert", "updatenotification", "compliments", "weather", "MMM-Nowplayingonspotify", "MMM-covid19uk-stats"],
-				   // pageTwoModules: ["Hello-Lucy", "clock", "MMM-soccer", "newsfeed"],                   // modules to show on page two
-                                   // pageThreeModules: ["Hello-Lucy", "clock", "calendar", "MMM-Formula1"],             // modules to show on page three
-				    //pageFourModules: ["Hello-Lucy", "clock", "MMM-CoinMarketCap", "MMM-AVStock"],
-				    //pageFiveModules: ["Hello-Lucy", "clock", "weather", "MMM-nasaastropic", "MMM-Moonphase"],
+				    pageTwoModules: ["Hello-Lucy", "clock", "MMM-soccer", "newsfeed"],                   
+                                    pageThreeModules: ["Hello-Lucy", "clock", "calendar", "MMM-Formula1"],            
+				    pageFourModules: ["Hello-Lucy", "clock", "MMM-CoinMarketCap", "MMM-AVStock"],
+				    pageFiveModules: ["Hello-Lucy", "clock", "weather", "MMM-nasaastropic", "MMM-Moonphase"],
   			}
 		}, 
 	]
