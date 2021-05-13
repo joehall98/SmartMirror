@@ -184,7 +184,7 @@ var config = {
 				}
 		},
 		{
-                        module: 'MMM-nasaastropic', // Repository and config code from: https://github.com/nebulx29/MMM-nasaastropicy
+                        module: 'MMM-nasaastropic', // Repository and config code from: https://github.com/nebulx29/MMM-nasaastropic
                         position: 'bottom_right',
                         config: {
                                 updateInterval: 6*60*60*1000,
